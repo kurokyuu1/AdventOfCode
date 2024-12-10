@@ -3,6 +3,7 @@
 using AdventOfCode._2024.Puzzles.DayFive;
 using AdventOfCode._2024.Puzzles.DayFour;
 using AdventOfCode._2024.Puzzles.DayOne;
+using AdventOfCode._2024.Puzzles.DaySeven;
 using AdventOfCode._2024.Puzzles.DaySix;
 using AdventOfCode._2024.Puzzles.DayThree;
 using AdventOfCode._2024.Puzzles.DayTwo;
@@ -23,7 +24,7 @@ public static class Aoc2024Extensions
         new SolutionDayThree(),
         new SolutionDayFour(),
         new SolutionDayFive(),
-        new SolutionDaySix(),
+        new SolutionDaySeven(),
     ];
 
     #endregion
