@@ -1,4 +1,6 @@
 ﻿using System.Numerics;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace AdventOfCode.Core.Extensions;
 
@@ -21,4 +23,20 @@ public static class Extensions
 
     public static void SortAscending<TNumber>(this List<TNumber> list) where TNumber : INumber<TNumber>
         => list.Sort((a, b) => a.CompareTo(b));
+
+    public static void LogMatches(this MatchCollection matches)
+    {
+        var sb = new StringBuilder();
+        foreach (Match match in matches)
+        {
+            sb.AppendLine($"Match: '{match.Value}' at index {match.Index}");
+
+            for (var i = 0; i < match.Groups.Count; i++)
+            {
+                sb.AppendLine($"\tGroup {i}: '{match.Groups[i].Value}'");
+            }
+        }
+
+        File.WriteAllText("match_result_day3.txt", sb.ToString());
+    }
 }

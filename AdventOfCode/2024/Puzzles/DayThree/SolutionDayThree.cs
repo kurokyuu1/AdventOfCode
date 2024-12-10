@@ -2,7 +2,6 @@
 
 using System.Text.RegularExpressions;
 using AdventOfCode._2024.RegularExpressions;
-using AdventOfCode.Core.Enumeration;
 using AdventOfCode.Core.RegularExpressions;
 
 #endregion
@@ -12,12 +11,6 @@ namespace AdventOfCode._2024.Puzzles.DayThree;
 [AdventModule("Day Three")]
 public sealed class SolutionDayThree : SolutionBase
 {
-    #region "Constants"
-
-    private const ReadingMode Mode = ReadingMode.Input;
-
-    #endregion
-
     #region "Variables"
 
     private string[] _lines = [];
@@ -26,7 +19,7 @@ public sealed class SolutionDayThree : SolutionBase
 
     #region "Constructor"
 
-    public SolutionDayThree() : base("2024", "03", false)
+    public SolutionDayThree() : base("2024", "03", true)
     {
     }
 
@@ -37,16 +30,20 @@ public sealed class SolutionDayThree : SolutionBase
     public override async Task RunAsync()
     {
         _lines = await InternalReadAllLinesAsync();
+        //_lines = await InternalReadAllLinesAsync(Mode);
 
-        SolvePuzzleOne(Mode == ReadingMode.TestInput
-            ? _lines[..1].ToArray()
-            : _lines); // produces correct result for both test and input
-        SolvePuzzleTwo(Mode == ReadingMode.TestInput
-            ? _lines[1..].ToArray()
-            : _lines); // produces correct result for only test, input seems to be off
+        // you can enable this back if you want to test the solution
+        //if (Mode == ReadingMode.TestInput)
+        //{
+        //    SolveTest();
+        //}
+        //else
+        //{
+        SolveRealInput();
+        //}
     }
 
-    private void SolvePuzzleOne(Span<string> lines)
+    private static void SolvePuzzleOne(Span<string> lines)
     {
         var totalSum = 0;
 
@@ -69,52 +66,64 @@ public sealed class SolutionDayThree : SolutionBase
                 sum += firstValue * secondValue;
             }
 
-            LogToConsole($"Sum of {line} is: {sum}");
             totalSum += sum;
         }
 
         PuzzleOneResult(totalSum);
     }
 
-    private void SolvePuzzleTwo(Span<string> lines)
+    private static void SolvePuzzleTwo(string input)
     {
-        var totalSum = 0;
+        // here it is important to have the full string, not only the lines
+        // because otherwise the regex will not work because the start and end of the don't() and do()s are not clear/found.
+        var matches = RegexCollection.ExtractDontDo().Matches(input);
+        var sum = 0;
+        var isWithinDo = true;
 
-        foreach (var line in lines)
+        foreach (Match match in matches)
         {
-            var matches = RegexCollection.ExtractDontDo().Matches(line);
-            var sum = 0;
-            var isWithinDo = true;
-            foreach (Match match in matches)
+            if (match.Groups["dont"].Success)
             {
-                if (match.Groups["dont"].Success)
-                {
-                    isWithinDo = false;
-                }
-                else if (match.Groups["do"].Success)
-                {
-                    isWithinDo = true;
-                }
-                else if (match.Groups["mul"].Success && isWithinDo)
-                {
-                    var values = RegExCollection.ExtractNumbersRegex().Matches(match.Value);
-                    if (values.Count != 2)
-                    {
-                        throw new InvalidOperationException("Invalid number of values");
-                    }
-
-                    var firstValue = int.Parse(values[0].Value);
-                    var secondValue = int.Parse(values[1].Value);
-                    sum += firstValue * secondValue;
-                }
+                isWithinDo = false;
             }
+            else if (match.Groups["do"].Success)
+            {
+                isWithinDo = true;
+            }
+            else if (match.Groups["mul"].Success && isWithinDo)
+            {
+                var values = RegExCollection.ExtractNumbersRegex().Matches(match.Value);
+                if (values.Count != 2)
+                {
+                    throw new InvalidOperationException("Invalid number of values");
+                }
 
-            LogToConsole($"Sum of {line} is: {sum}");
-            totalSum += sum;
+                var firstValue = int.Parse(values[0].Value);
+                var secondValue = int.Parse(values[1].Value);
+                sum += firstValue * secondValue;
+            }
         }
 
-        PuzzleTwoResult(totalSum);
+        PuzzleTwoResult(sum);
+    }
+
+    //private void SolveTest()
+    //{
+    //    // test is special because it has two different lines for each puzzle
+    //    // so line one is for puzzle 1 and line two is for puzzle 2
+    //    SolvePuzzleOne(_lines[..1].ToArray());
+    //    SolvePuzzleTwo(string.Join(Environment.NewLine, _lines[1..]));
+    //}
+
+    private void SolveRealInput()
+    {
+        SolvePuzzleOne(_lines);
+
+        // this is developed on a windows machine, so the new line is \r\n, if you are on a different machine or have different line endings, you need to adjust this according to your file input
+        SolvePuzzleTwo(string.Join(Environment.NewLine, _lines));
     }
 
     #endregion
+
+    //private const ReadingMode Mode = ReadingMode.Input;
 }
