@@ -17,8 +17,6 @@ internal sealed record PageOrder(List<int[]> Rules, int[] Manual)
                 from rule in filteredRules
                 let result = IsValidOrder(rule)
                 where result.IsValid
-                //where firstIdx != -1 || secondIdx != -1
-                //where firstIdx != -1 && secondIdx == -1 || firstIdx == -1 && secondIdx != -1 || firstIdx < secondIdx
                 select result.FirstIndex)
             .Count();
 
@@ -86,7 +84,7 @@ public sealed class SolutionDayFive : SolutionBase
 
     }
 
-    public override async Task RunAsync()
+    public override async Task<(object? Result1, object? Result2)> RunAsync()
     {
         var input = await InternalReadAllTextAsync(ReadingMode.TestInput);
         var split = input.SplitByDoubleNewLine();
@@ -99,5 +97,7 @@ public sealed class SolutionDayFive : SolutionBase
 
         PuzzleOneResult(sumOfMiddleValues);
         //PuzzleTwoResult(unordered);
+
+        return (sumOfMiddleValues, null);
     }
 }

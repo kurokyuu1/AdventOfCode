@@ -54,8 +54,17 @@ public abstract class SolutionBase : IAdventModule
     protected ReadOnlySpan<string> InternalReadAllLines(ReadingMode mode = ReadingMode.Input) =>
         ReadAllLines(mode == ReadingMode.Input ? _fileName : _testFilename);
 
-    protected static void PuzzleOneResult<T>(T msg) => WriteLine($"[Puzzle 1] {msg}");
-    protected static void PuzzleTwoResult<T>(T msg) => WriteLine($"[Puzzle 2] {msg}");
+    protected static T PuzzleOneResult<T>(T msg)
+    {
+        WriteLine($"[Puzzle 1] {msg}");
+        return msg;
+    }
+
+    protected static T PuzzleTwoResult<T>(T msg)
+    {
+        WriteLine($"[Puzzle 2] {msg}");
+        return msg;
+    }
 
     protected static int ConvertToInt(string input) =>
         int.Parse(RegExCollection.ExtractNumbersRegex().Match(input).Value);

@@ -71,7 +71,7 @@ public sealed class SolutionDayOne : SolutionBase
                 select leftNumber * count).Sum();
     }
 
-    public override async Task RunAsync()
+    public override async Task<(object Result1, object Result2)> RunAsync()
     {
         Lines = await InternalReadAllLinesAsync();
         var result = await PuzzleOneAsync();
@@ -79,6 +79,8 @@ public sealed class SolutionDayOne : SolutionBase
 
         var result2 = await PuzzleTwoAsync();
         PuzzleTwoResult($"Sum of all numbers is: {result2}");
+
+        return (result, result2);
     }
 
     #endregion

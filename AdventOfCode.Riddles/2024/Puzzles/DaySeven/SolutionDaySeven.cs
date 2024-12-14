@@ -11,13 +11,15 @@ public sealed class SolutionDaySeven : SolutionBase
 
     private const string SpaceSeparator = " ";
 
-    public override async Task RunAsync()
+    public override async Task<(object Result1, object Result2)> RunAsync()
     {
         var lines = await InternalReadAllLinesAsync(ReadingMode.TestInput);
 
         var sum = lines.Sum(SolveEquation);
 
         PuzzleOneResult(sum);
+
+        return (sum, null);
     }
 
     private int SolveEquation(string line)

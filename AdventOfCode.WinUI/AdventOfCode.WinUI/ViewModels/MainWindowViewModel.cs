@@ -22,12 +22,18 @@ public sealed partial class MainWindowViewModel : ObservableRecipient
     public MainWindowViewModel(ILogger<MainWindowViewModel> logger)
     {
         _logger = logger;
-        BuildStaggeredLayoutForYear(2024);
+        Years = RiddlesByYear.Keys.ToArray();
+        SelectedYear = Years[^1];
+        BuildStaggeredLayoutForYear(SelectedYear);
     }
+
+    [ObservableProperty]
+    private int _selectedYear;
 
     [ObservableProperty]
     private ObservableCollection<RiddleItem> _riddles = [];
 
+    [ObservableProperty]
     private int[] _years = [];
 
     private readonly static Dictionary<int, Dictionary<int, IAdventModule>> RiddlesByYear = new()
@@ -48,7 +54,7 @@ public sealed partial class MainWindowViewModel : ObservableRecipient
         }
     }
 
-    private void BuildStaggeredLayoutForYear(int year)
+    public void BuildStaggeredLayoutForYear(int year)
     {
         Riddles.Clear();
         var riddles = RiddlesByYear[year];

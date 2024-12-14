@@ -27,7 +27,7 @@ public sealed class SolutionDayThree : SolutionBase
 
     #region "Methods"
 
-    public override async Task RunAsync()
+    public override async Task<(object Result1, object Result2)> RunAsync()
     {
         _lines = await InternalReadAllLinesAsync();
         //_lines = await InternalReadAllLinesAsync(Mode);
@@ -39,11 +39,11 @@ public sealed class SolutionDayThree : SolutionBase
         //}
         //else
         //{
-        SolveRealInput();
+        return SolveRealInput();
         //}
     }
 
-    private static void SolvePuzzleOne(Span<string> lines)
+    private static int SolvePuzzleOne(Span<string> lines)
     {
         var totalSum = 0;
 
@@ -70,9 +70,11 @@ public sealed class SolutionDayThree : SolutionBase
         }
 
         PuzzleOneResult(totalSum);
+
+        return totalSum;
     }
 
-    private static void SolvePuzzleTwo(string input)
+    private static int SolvePuzzleTwo(string input)
     {
         // here it is important to have the full string, not only the lines
         // because otherwise the regex will not work because the start and end of the don't() and do()s are not clear/found.
@@ -105,6 +107,7 @@ public sealed class SolutionDayThree : SolutionBase
         }
 
         PuzzleTwoResult(sum);
+        return sum;
     }
 
     //private void SolveTest()
@@ -115,12 +118,14 @@ public sealed class SolutionDayThree : SolutionBase
     //    SolvePuzzleTwo(string.Join(Environment.NewLine, _lines[1..]));
     //}
 
-    private void SolveRealInput()
+    private (int Result1, int Result2) SolveRealInput()
     {
-        SolvePuzzleOne(_lines);
+        //SolvePuzzleOne(_lines);
 
-        // this is developed on a windows machine, so the new line is \r\n, if you are on a different machine or have different line endings, you need to adjust this according to your file input
-        SolvePuzzleTwo(string.Join(Environment.NewLine, _lines));
+        //// this is developed on a windows machine, so the new line is \r\n, if you are on a different machine or have different line endings, you need to adjust this according to your file input
+        //SolvePuzzleTwo(string.Join(Environment.NewLine, _lines));
+
+        return (SolvePuzzleOne(_lines), SolvePuzzleTwo(string.Join(Environment.NewLine, _lines)));
     }
 
     #endregion

@@ -2,5 +2,5 @@
 
 public interface IAdventModule
 {
-    public Task RunAsync();
+    public Task<(object Result1, object Result2)> RunAsync();
 }

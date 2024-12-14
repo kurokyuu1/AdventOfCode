@@ -33,7 +33,7 @@ namespace AdventOfCode.WinUI.Pages
                     CloseButtonText = AppResources.GetLocalized("Close"),
                     XamlRoot = XamlRoot,
                 };
-                await ViewModel.ExecuteDaySolutionAsync(2024, item.Day);
+                await ViewModel.ExecuteDaySolutionAsync(ViewModel.SelectedYear, item.Day);
                 await dlg.ShowAsync();
             }
         }
@@ -51,11 +51,21 @@ namespace AdventOfCode.WinUI.Pages
                 });
             };
         }
+
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if (sender is not ComboBox { SelectedItem: int year })
+            //{
+            //    return;
+            //}
+
+            ViewModel.BuildStaggeredLayoutForYear(ViewModel.SelectedYear);
+        }
     }
 
     public sealed class RiddleStringWriter : StringWriter
     {
-        public event EventHandler<TextWrittenEventArgs> StringWritten;
+        public event EventHandler<TextWrittenEventArgs>? StringWritten;
 
         public override void Write(string? value)
         {
@@ -63,9 +73,9 @@ namespace AdventOfCode.WinUI.Pages
             OnStringWritten(value);
         }
 
-        protected void OnStringWritten(string? value)
+        private void OnStringWritten(string? value)
         {
-            StringWritten?.Invoke(this, new TextWrittenEventArgs(value));
+            StringWritten?.Invoke(this, new(value));
         }
     }
 
@@ -78,4 +88,4 @@ namespace AdventOfCode.WinUI.Pages
             Value = value;
         }
     }
-    }
+}
