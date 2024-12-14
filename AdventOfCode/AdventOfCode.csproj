@@ -19,7 +19,11 @@
     </PackageReference>
     <PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.22272.1" />
   </ItemGroup>
-
+	<ItemGroup>
+		<None Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdventOfCode.Riddles\AdventOfCode.Riddles.csproj" />
   </ItemGroup>

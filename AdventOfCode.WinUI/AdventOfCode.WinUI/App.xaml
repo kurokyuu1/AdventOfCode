@@ -3,6 +3,7 @@
     x:Class="AdventOfCode.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="using:AdventOfCode.WinUI.Converter"
     xmlns:local="using:AdventOfCode.WinUI">
     <Application.Resources>
         <ResourceDictionary>
@@ -11,6 +12,10 @@
                 <ResourceDictionary Source="ms-appx:///Styles/FontSizes.xaml"/>
                 <ResourceDictionary Source="ms-appx:///Styles/Thickness.xaml" />
                 <ResourceDictionary Source="ms-appx:///Styles/TextBlock.xaml" />
+
+                <ResourceDictionary>
+                    <converter:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+                </ResourceDictionary>
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->

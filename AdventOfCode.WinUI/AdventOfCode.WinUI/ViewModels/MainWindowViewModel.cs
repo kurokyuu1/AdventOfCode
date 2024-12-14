@@ -37,6 +37,17 @@ public sealed partial class MainWindowViewModel : ObservableRecipient
         { 2024, Aoc2024Extensions.ModulesFor2024Dictionary },
     };
 
+    public async Task ExecuteDaySolutionAsync(int year, int day)
+    {
+        if (RiddlesByYear.TryGetValue(year, out var riddles))
+        {
+            if (riddles.TryGetValue(day, out var module))
+            {
+                await module.RunAsync();
+            }
+        }
+    }
+
     private void BuildStaggeredLayoutForYear(int year)
     {
         Riddles.Clear();
@@ -49,7 +60,7 @@ public sealed partial class MainWindowViewModel : ObservableRecipient
             var red = (byte)Random.Shared.Next(0, 255);
             var green = (byte)Random.Shared.Next(0, 255);
             var blue = (byte)Random.Shared.Next(0, 255);
-            var height = Random.Shared.Next(150, 250);
+            var height = Random.Shared.Next(200, 250);
             if (riddles.TryGetValue(day, out var module))
             {
                 var item = new RiddleItem()
@@ -69,7 +80,7 @@ public sealed partial class MainWindowViewModel : ObservableRecipient
             {
                 var item = new RiddleItem()
                 {
-                    Color = Color.FromArgb(0xff, red, green, blue),
+                    Color = Color.FromArgb(0xff, 0xa9, 0xa9, 0xa9),
                     Year = year,
                     Day = day,
                     Height = height,

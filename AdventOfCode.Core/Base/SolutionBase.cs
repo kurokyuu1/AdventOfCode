@@ -23,8 +23,8 @@ public abstract class SolutionBase : IAdventModule
 
     protected SolutionBase(string year, string day, bool consoleOutput)
     {
-        _fileName = Path.Combine(year, "data", day, "input.txt");
-        _testFilename = Path.Combine(year, "data", day, "test.txt");
+        _fileName = Path.Combine(AppContext.BaseDirectory, year, "data", day, "input.txt");
+        _testFilename = Path.Combine(AppContext.BaseDirectory, year, "data", day, "test.txt");
         _consoleOutput = consoleOutput;
     }
 

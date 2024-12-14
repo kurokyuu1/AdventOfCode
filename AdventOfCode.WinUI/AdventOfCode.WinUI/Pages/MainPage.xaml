@@ -9,20 +9,9 @@
     mc:Ignorable="d">
     <Page.Resources>
         <SolidColorBrush x:Key="DisabledDayTile" Color="Gray"/>
+
         <DataTemplate x:Key="AdventCalendarItem" x:DataType="models:RiddleItem">
             <Grid>
-                <!--<VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup>
-                        <VisualState x:Name="ActiveDay">
-                            <VisualState.StateTriggers>
-                                <winUi:IsEqualStateTrigger Value="{x:Bind IsStarted}" To="{x:Null}" />
-                            </VisualState.StateTriggers>
-                            <VisualState.Setters>
-                                <Setter Target="DayTile.Background" Value="{StaticResource DisabledDayTile}"/>
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>-->
                 <Grid.Style>
                     <Style TargetType="Grid">
                         <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}"/>
@@ -31,7 +20,7 @@
                         <Setter Property="CornerRadius" Value="15"/>
                     </Style>
                 </Grid.Style>
-                <Border Height="{x:Bind Height}" Width="150">
+                <Border Height="{x:Bind Height}" Width="225">
                     <Border.Background>
                         <SolidColorBrush Color="{x:Bind Color}"/>
                     </Border.Background>
@@ -41,7 +30,21 @@
         </DataTemplate>
     </Page.Resources>
     <Grid>
-        <GridView Name="AdventOfCodeDays" ItemTemplate="{StaticResource AdventCalendarItem}" ItemsSource="{x:Bind ViewModel.Riddles, Mode=OneWay}"/>
-        <!--<TextBlock Text="Hallo"/>-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+        <GridView Name="AdventOfCodeDays" 
+                  Grid.Column="0"
+                  IsItemClickEnabled="True"
+                  ItemClick="AdventOfCodeDays_OnItemClick"
+                  ItemTemplate="{StaticResource AdventCalendarItem}" 
+                  ItemsSource="{x:Bind ViewModel.Riddles, Mode=OneWay}"/>
+
+        <TextBox x:Name="txtAdventOfCodeOutput"
+                 Grid.Column="1"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 IsReadOnly="True"/>
     </Grid>
 </Page>
