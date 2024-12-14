@@ -1,0 +1,74 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Page
+    x:Class="AdventOfCode.WinUI.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="using:CommunityToolkit.WinUI"
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xaml="using:Microsoft.UI.Xaml"
+    xmlns:converter="using:AdventOfCode.WinUI.Converter"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <converter:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+    </Page.Resources>
+    <StackPanel Spacing="4"
+            x:Name="ContentArea">
+        <TextBlock x:Uid="Settings_Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
+        <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+            <TextBlock x:Uid="Settings_Theme" />
+            <controls:SettingsExpander HeaderIcon="{ui:SymbolIcon Symbol=FontColor}" x:Uid="Settings_Theme_Card" IsEnabled="True">
+                <TextBlock Text="{x:Bind ViewModel.ElementTheme, Mode=OneWay}"/>
+                <controls:SettingsExpander.Items>
+                    <StackPanel Margin="{StaticResource XSmallTopMargin}">
+                        <RadioButton
+                            x:Uid="Settings_Theme_Light"
+                            Command="{x:Bind ViewModel.SwitchThemeCommand}"
+                            IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
+                            FontSize="15"
+                            GroupName="AppTheme">
+                            <RadioButton.CommandParameter>
+                                <xaml:ElementTheme>Light</xaml:ElementTheme>
+                            </RadioButton.CommandParameter>
+                        </RadioButton>
+                        <RadioButton
+                            x:Uid="Settings_Theme_Dark"
+                            Command="{x:Bind ViewModel.SwitchThemeCommand}"
+                            IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
+                            FontSize="15"
+                            GroupName="AppTheme">
+                            <RadioButton.CommandParameter>
+                                <xaml:ElementTheme>Dark</xaml:ElementTheme>
+                            </RadioButton.CommandParameter>
+                        </RadioButton>
+                        <RadioButton
+                            x:Uid="Settings_Theme_Default"
+                            Command="{x:Bind ViewModel.SwitchThemeCommand}"
+                            IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
+                            FontSize="15"
+                            GroupName="AppTheme">
+                            <RadioButton.CommandParameter>
+                                <xaml:ElementTheme>Default</xaml:ElementTheme>
+                            </RadioButton.CommandParameter>
+                        </RadioButton>
+                    </StackPanel>
+                </controls:SettingsExpander.Items>
+            </controls:SettingsExpander>
+
+            <TextBlock x:Uid="Settings_About_Header" Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+            <!--<controls:SettingsExpander x:Uid="Settings_About" 
+                                       HeaderIcon="{ui:SymbolIcon Symbol=Help}" 
+                                       Header="{x:Bind m:TwAppinfo.Name}" 
+                                       Margin="{StaticResource XSmallTopMargin}">
+                <TextBlock Text="{x:Bind m:TwAppinfo.Version}"/>
+            </controls:SettingsExpander>-->
+
+            <HyperlinkButton x:Uid="Settings_Visit_Page"/>
+        </StackPanel>
+    </StackPanel>
+
+</Page>

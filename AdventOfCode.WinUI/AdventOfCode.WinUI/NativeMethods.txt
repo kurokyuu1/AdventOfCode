@@ -1,0 +1,6 @@
+GetActiveWindow
+SendMessage
+GetCurrentPackageFullName
+WA_INACTIVE
+WA_ACTIVE
+WM_ACTIVATE

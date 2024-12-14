@@ -48,6 +48,12 @@ public abstract class SolutionBase : IAdventModule
     protected Task<string[]> InternalReadAllLinesAsync(ReadingMode mode = ReadingMode.Input) =>
         ReadAllLinesAsync(mode == ReadingMode.Input ? _fileName : _testFilename);
 
+    protected ReadOnlySpan<char> InternalReadAllText(ReadingMode mode = ReadingMode.Input) =>
+        ReadAllText(mode == ReadingMode.Input ? _fileName : _testFilename);
+
+    protected ReadOnlySpan<string> InternalReadAllLines(ReadingMode mode = ReadingMode.Input) =>
+        ReadAllLines(mode == ReadingMode.Input ? _fileName : _testFilename);
+
     protected static void PuzzleOneResult<T>(T msg) => WriteLine($"[Puzzle 1] {msg}");
     protected static void PuzzleTwoResult<T>(T msg) => WriteLine($"[Puzzle 2] {msg}");
 

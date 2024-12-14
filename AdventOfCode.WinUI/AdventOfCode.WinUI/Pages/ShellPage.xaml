@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="AdventOfCode.WinUI.Pages.ShellPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:Kuro.WinUI.Core.Behaviors"
+    xmlns:navigation="using:AdventOfCode.WinUI.Navigation"
+    xmlns:behaviors1="using:AdventOfCode.WinUI.Behaviors"
+    Loaded="ShellPage_OnLoaded">
+
+    <Grid>
+        <Grid x:Name="AppTitleBar"
+              Canvas.ZIndex="1"
+              Height="{Binding ElementName=NavigationViewControl, Path=CompactPaneLength}"
+              IsHitTestVisible="True"
+              VerticalAlignment="Top">
+            <Image Source="/Images/prg_alarmclock_icon.png"
+                   HorizontalAlignment="Left"
+                   Width="16"
+                   Height="16" />
+            <TextBlock x:Name="AppTitleBarText"
+                       VerticalAlignment="Center"
+                       TextWrapping="NoWrap"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Margin="28,0,0,0"/>
+        </Grid>
+        <NavigationView x:Name="NavigationViewControl" 
+                        IsBackButtonVisible="Visible"
+                        IsBackEnabled="{x:Bind ViewModel.IsBackEnabled,Mode=OneWay}"
+                        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
+                        IsSettingsVisible="True" 
+                        ExpandedModeThresholdWidth="1280"
+                        Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}"
+                        DisplayModeChanged="NavigationViewControl_OnDisplayModeChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:Uid="NavigationItemHome" navigation:NavigationHelper.NavigateTo="AdventOfCode.WinUI.ViewModels.MainWindowViewModel" />
+                <NavigationViewItem x:Uid="NavigationItemAbout" navigation:NavigationHelper.NavigateTo="AdventOfCode.WinUI.ViewModels.AboutViewModel" />
+            </NavigationView.MenuItems>
+            <NavigationView.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" Style="{StaticResource TitleTextBlockStyle}" />
+                </DataTemplate>
+            </NavigationView.HeaderTemplate>
+            <i:Interaction.Behaviors>
+                <behaviors1:NavigationViewHeaderBehavior
+                    DefaultHeader="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
+                    <behaviors1:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock
+                                    Text="{Binding}"
+                                    Style="{ThemeResource TitleTextBlockStyle}" />
+                            </Grid>
+                        </DataTemplate>
+                    </behaviors1:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+                </behaviors1:NavigationViewHeaderBehavior>
+            </i:Interaction.Behaviors>
+            <Grid Margin="{StaticResource NavigationViewPageContentMargin}">
+                <Frame x:Name="ContentFrame" />
+            </Grid>
+        </NavigationView>
+    </Grid>
+</Page>

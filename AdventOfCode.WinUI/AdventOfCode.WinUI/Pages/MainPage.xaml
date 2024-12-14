@@ -1,0 +1,47 @@
+<Page
+    x:Class="AdventOfCode.WinUI.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:AdventOfCode.WinUI.Models"
+    xmlns:winUi="using:CommunityToolkit.WinUI"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <SolidColorBrush x:Key="DisabledDayTile" Color="Gray"/>
+        <DataTemplate x:Key="AdventCalendarItem" x:DataType="models:RiddleItem">
+            <Grid>
+                <!--<VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualState x:Name="ActiveDay">
+                            <VisualState.StateTriggers>
+                                <winUi:IsEqualStateTrigger Value="{x:Bind IsStarted}" To="{x:Null}" />
+                            </VisualState.StateTriggers>
+                            <VisualState.Setters>
+                                <Setter Target="DayTile.Background" Value="{StaticResource DisabledDayTile}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>-->
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}"/>
+                        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Grid.Style>
+                <Border Height="{x:Bind Height}" Width="150">
+                    <Border.Background>
+                        <SolidColorBrush Color="{x:Bind Color}"/>
+                    </Border.Background>
+                    <TextBlock Margin="6,4,4,4" FontSize="16" Text="{x:Bind Title}"/>
+                </Border>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid>
+        <GridView Name="AdventOfCodeDays" ItemTemplate="{StaticResource AdventCalendarItem}" ItemsSource="{x:Bind ViewModel.Riddles, Mode=OneWay}"/>
+        <!--<TextBlock Text="Hallo"/>-->
+    </Grid>
+</Page>

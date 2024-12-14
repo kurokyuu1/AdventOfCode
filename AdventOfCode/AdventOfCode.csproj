@@ -9,24 +9,19 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="morelinq" Version="3.4.2" />
+    <PackageReference Include="morelinq" Version="4.3.0" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.3.15" />
+    <PackageReference Include="NetEscapades.EnumGenerators" Version="1.0.0-beta11" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.106">
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	    <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.22272.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AdventOfCode.Core\AdventOfCode.Core.csproj" />
+    <ProjectReference Include="..\AdventOfCode.Riddles\AdventOfCode.Riddles.csproj" />
   </ItemGroup>
-
-	<ItemGroup>
-		<None Update="**\data\**\*">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="2024\Puzzles\DayFive\" />
-	  <Folder Include="2024\Puzzles\DaySix\" />
-	  <Folder Include="2024\Puzzles\DaySeven\" />
-	  <Folder Include="2024\Puzzles\DayEight\" />
-	</ItemGroup>
 
 </Project>
