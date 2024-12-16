@@ -44,7 +44,7 @@ namespace AdventOfCode.WinUI.Pages
             };
         }
 
-        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void AdventYearSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //if (sender is not ComboBox { SelectedItem: int year })
             //{

@@ -42,6 +42,7 @@ public abstract class SolutionBase : IAdventModule
         if (_consoleOutput)
         {
             WriteLine(message);
+
         }
     }
 
@@ -59,6 +60,19 @@ public abstract class SolutionBase : IAdventModule
 
     protected void PuzzleOne(string message) => WriteLine($"[Puzzle 1] {message}");
     protected void PuzzleTwo(string message) => WriteLine($"[Puzzle 2] {message}");
+
+    public void WriteResults()
+    {
+        if (PuzzleResult1 is { })
+        {
+            PuzzleOne(PuzzleResult1.AsString());
+        }
+
+        if (PuzzleResult2 is { })
+        {
+            PuzzleTwo(PuzzleResult2.AsString());
+        }
+    }
 
     protected void SetPuzzleOneResult<TResult>(TResult result)
     {

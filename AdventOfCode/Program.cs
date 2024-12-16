@@ -52,6 +52,7 @@ foreach (var item in modules)
     WriteLine($"Running module [{(Attribute.GetCustomAttribute(item.GetType(), typeof(AdventModuleAttribute)) as AdventModuleAttribute)?.Name}]");
 
     await item.RunAsync();
+    item.WriteResults();
 }
 
 Read();

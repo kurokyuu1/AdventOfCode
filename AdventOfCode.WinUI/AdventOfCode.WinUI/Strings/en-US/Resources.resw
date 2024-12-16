@@ -257,4 +257,10 @@ Developed with {1} and WinUI 3</value>
   <data name="Settings_Visit_Page.NavigateUri" xml:space="preserve">
     <value>https://github.com/kurokyuu1</value>
   </data>
+  <data name="AdventYearSelector.Header" xml:space="preserve">
+    <value>Choose Advent of Code Year:</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
 </root>

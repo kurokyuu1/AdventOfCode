@@ -132,11 +132,17 @@ Copyright (C) 2022-2024</value>
   <data name="AboutViewModel_AboutText" xml:space="preserve">
     <value>Version: {0} Entwickelt mit {1} und WinUI 3</value>
   </data>
+  <data name="AdventYearSelector.Header" xml:space="preserve">
+    <value>Wähle ein Advent of Code Jahr aus:</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>Schließen</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopieren</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Datum</value>

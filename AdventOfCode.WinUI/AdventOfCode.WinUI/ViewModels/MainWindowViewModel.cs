@@ -1,6 +1,7 @@
 ﻿#region "Usings"
 
 using System.Collections.ObjectModel;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.UI;
 using AdventOfCode.Core.Contracts;
 using AdventOfCode.Riddles._2022.Models;
@@ -10,6 +11,7 @@ using AdventOfCode.WinUI.Contracts;
 using AdventOfCode.WinUI.Contracts.Services;
 using AdventOfCode.WinUI.Models;
 using AdventOfCode.WinUI.Strings;
+using AdventOfCode.WinUI.Utils;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
@@ -46,15 +48,12 @@ public sealed partial class MainWindowViewModel : ObservableRecipient
         { 2024, Aoc2024Extensions.ModulesFor2024Dictionary },
     };
 
-    public async Task ExecuteDaySolutionAsync(int year, int day)
+    
+    private static void CopyToClipboard(string text)
     {
-        if (RiddlesByYear.TryGetValue(year, out var riddles))
-        {
-            if (riddles.TryGetValue(day, out var module))
-            {
-                await module.RunAsync();
-            }
-        }
+        var dataPackage = new DataPackage();
+        dataPackage.SetText(text);
+        Clipboard.SetContent(dataPackage);
     }
 
     [RelayCommand]
@@ -72,6 +71,8 @@ public sealed partial class MainWindowViewModel : ObservableRecipient
             Title = item.Title,
             Content = item.Description,
             CloseButtonText = AppResources.GetLocalized("Close"),
+            PrimaryButtonText = AppResources.GetLocalized("Copy"),
+            PrimaryButtonCommand = new RelayCommand(() => CopyToClipboard(item.Description)),
             XamlRoot = App.MainWindow.Content.XamlRoot,
         };
         await dlg.ShowAsync();
@@ -86,15 +87,20 @@ public sealed partial class MainWindowViewModel : ObservableRecipient
 
         foreach (var day in dayRanges)
         {
-            var red = (byte)Random.Shared.Next(0, 255);
-            var green = (byte)Random.Shared.Next(0, 255);
-            var blue = (byte)Random.Shared.Next(0, 255);
+            //var red = (byte)Random.Shared.Next(0, 255);
+            //var green = (byte)Random.Shared.Next(0, 255);
+            //var blue = (byte)Random.Shared.Next(0, 255);
+            var hue = Random.Shared.Next(0, 30);
+            var saturation = Random.Shared.NextDouble() * .5 + .5;
+            var lightness = Random.Shared.NextDouble() * .4 + .4;
+            var adventColor = AdventColor.FromHsl(hue, saturation, lightness).GenerateColor();
             var height = Random.Shared.Next(200, 250);
             if (riddles.TryGetValue(day, out var module))
             {
                 var item = new RiddleItem
                 {
-                    Color = Color.FromArgb(0xff, red, green, blue),
+                    //Color = Color.FromArgb(0xff, red, green, blue),
+                    Color = adventColor.ToColor(),
                     Year = year,
                     Day = day,
                     Height = height,
