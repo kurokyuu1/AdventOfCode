@@ -37,8 +37,8 @@ internal sealed class SolutionDayEight : SolutionBase
             .Select(x => StepsFromAToZ(x.Instruction, "Z", instructions, direction))
             .Aggregate(1UL, MathHelper.LowestCommonMultiple);
 
-        PuzzleOneResult(StepsFromAToZ("AAA", "ZZZ", instructions, direction));
-        PuzzleTwoResult(puzzleTwoResult);
+        SetPuzzleOneResult(StepsFromAToZ("AAA", "ZZZ", instructions, direction));
+        SetPuzzleTwoResult(puzzleTwoResult);
     }
 
     private static ulong StepsFromAToZ(string startingNode, string marker, IReadOnlyList<InstructionNode> nodes,

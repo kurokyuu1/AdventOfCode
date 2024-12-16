@@ -71,16 +71,18 @@ public sealed class SolutionDayOne : SolutionBase
                 select leftNumber * count).Sum();
     }
 
-    public override async Task<(object Result1, object Result2)> RunAsync()
+    public override async Task RunAsync()
     {
         Lines = await InternalReadAllLinesAsync();
         var result = await PuzzleOneAsync();
-        PuzzleOneResult($"Sum of all numbers is: {result}");
+        SetPuzzleOneResult(result);
+        //PuzzleTwo($"Sum of all numbers is: {result}");
 
         var result2 = await PuzzleTwoAsync();
-        PuzzleTwoResult($"Sum of all numbers is: {result2}");
+        SetPuzzleTwoResult(result2);
+        //PuzzleTwo($"Sum of all numbers is: {result2}");
 
-        return (result, result2);
+        //return (result, result2);
     }
 
     #endregion

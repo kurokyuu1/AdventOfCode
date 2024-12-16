@@ -47,8 +47,8 @@ internal sealed class SolutionDayFour : SolutionBase
     {
         var input = await InternalReadAllLinesAsync();
 
-        PuzzleOneResult($"Counted {CountOccurrences(input, CountingMode.Duplicates)} duplicates.");
-        PuzzleTwoResult($"Counted {CountOccurrences(input, CountingMode.Overlap)} overlaps.");
+        SetPuzzleOneResult($"Counted {CountOccurrences(input, CountingMode.Duplicates)} duplicates.");
+        SetPuzzleTwoResult($"Counted {CountOccurrences(input, CountingMode.Overlap)} overlaps.");
     }
 
     private static int[][] TransformString(string line) =>

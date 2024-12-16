@@ -52,8 +52,8 @@ internal sealed class SolutionDayThree : SolutionBase
                 select neighbours.First() * neighbours.Last())
             .Sum();
 
-        PuzzleOneResult($"Sum of all numbers is: {sum}");
-        PuzzleTwoResult($"Sum of all numbers is: {sum2}");
+        SetPuzzleOneResult($"Sum of all numbers is: {sum}");
+        SetPuzzleTwoResult($"Sum of all numbers is: {sum2}");
     }
 
     #endregion

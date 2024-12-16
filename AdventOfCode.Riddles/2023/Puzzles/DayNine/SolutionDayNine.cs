@@ -39,8 +39,8 @@ internal sealed class SolutionDayNine : SolutionBase
     {
         var lines = await InternalReadAllLinesAsync();
 
-        PuzzleOneResult(lines.Select(x => ExtrapolateRight(ParseNumbers(x))).Sum());
-        PuzzleTwoResult(lines.Select(x => ExtrapolateLeft(ParseNumbers(x))).Sum());
+        SetPuzzleOneResult(lines.Select(x => ExtrapolateRight(ParseNumbers(x))).Sum());
+        SetPuzzleTwoResult(lines.Select(x => ExtrapolateLeft(ParseNumbers(x))).Sum());
     }
 
     #endregion

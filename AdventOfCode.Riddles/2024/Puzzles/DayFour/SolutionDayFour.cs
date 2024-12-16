@@ -55,7 +55,7 @@ public sealed class SolutionDayFour : SolutionBase
         return count;
     }
 
-    public override async Task<(object Result1, object Result2)> RunAsync() => (await SolvePuzzleOne(), null);
+    public override Task RunAsync() => SolvePuzzleOneAsync();
 
     private static bool Search(char[,] grid, int x, int y, int directionIndex)
     {
@@ -79,7 +79,7 @@ public sealed class SolutionDayFour : SolutionBase
         return true;
     }
 
-    private async Task<int> SolvePuzzleOne()
+    private async Task SolvePuzzleOneAsync()
     {
         var lines = await InternalReadAllLinesAsync();
         var grid = new char[lines.Length, lines[0].Length];
@@ -95,9 +95,7 @@ public sealed class SolutionDayFour : SolutionBase
 
         var count = CountOccurrences(grid);
 
-        PuzzleOneResult(count);
-
-        return count;
+        SetPuzzleOneResult(count);
     }
 
     #endregion

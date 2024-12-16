@@ -44,8 +44,8 @@ public sealed class SolutionDaySeven : SolutionBase
         var hands = data.Select(x => ParseHand(x)).ToList();
         var hand2 = data.Select(x => ParseHand(x, true)).ToList();
 
-        PuzzleOneResult($"Total Winnings: {PlayGame(hands)}");
-        PuzzleTwoResult($"Total Winnings: {PlayGame(hand2)}");
+        SetPuzzleOneResult($"Total Winnings: {PlayGame(hands)}");
+        SetPuzzleTwoResult($"Total Winnings: {PlayGame(hand2)}");
     }
 
     #endregion

@@ -84,8 +84,8 @@ internal sealed partial class SolutionDayFive : SolutionBase
         var input = await InternalReadAllTextAsync();
         var parsedData = Parse(input);
 
-        PuzzleOneResult($"{CrateMover(Day5Modes.Puzzle1, parsedData)}");
-        PuzzleTwoResult($"{CrateMover(Day5Modes.Puzzle2, parsedData)}");
+        SetPuzzleOneResult($"{CrateMover(Day5Modes.Puzzle1, parsedData)}");
+        SetPuzzleTwoResult($"{CrateMover(Day5Modes.Puzzle2, parsedData)}");
     }
 
     #endregion

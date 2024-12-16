@@ -76,8 +76,8 @@ internal sealed class SolutionDayFive : SolutionBase
 
     public override async Task RunAsync()
     {
-        PuzzleOneResult(await SolveAsync(PuzzleOneRanges));
-        PuzzleTwoResult(await SolveAsync(PuzzleTwoRanges));
+        SetPuzzleOneResult(await SolveAsync(PuzzleOneRanges));
+        SetPuzzleTwoResult(await SolveAsync(PuzzleTwoRanges));
     }
 
     private async Task<long> SolveAsync(Func<IEnumerable<long>, IEnumerable<Range>> parseSeeds)

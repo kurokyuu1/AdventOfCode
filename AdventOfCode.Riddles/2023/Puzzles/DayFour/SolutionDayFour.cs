@@ -52,8 +52,8 @@ internal sealed class SolutionDayFour : SolutionBase
 
         var puzzle2Sum = cardCounts.Sum();
 
-        PuzzleOneResult($"Sum: {puzzle1Sum}");
-        PuzzleTwoResult($"Sum: {puzzle2Sum}");
+        SetPuzzleOneResult($"Sum: {puzzle1Sum}");
+        SetPuzzleTwoResult($"Sum: {puzzle2Sum}");
     }
 
     #endregion

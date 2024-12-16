@@ -53,7 +53,7 @@ namespace AdventOfCode.WinUI
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables()
                 .Build();
-
+            
             _logger = LogManager
                 .Setup()
                 .LoadConfigurationFromSection(Configuration)

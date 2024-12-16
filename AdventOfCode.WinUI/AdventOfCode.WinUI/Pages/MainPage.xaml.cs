@@ -18,7 +18,7 @@ namespace AdventOfCode.WinUI.Pages
         public MainPage()
         {
             ViewModel = DiManager.GetService<MainWindowViewModel>();
-            this.InitializeComponent();
+            InitializeComponent();
             RedirectConsoleOutput();
         }
 
@@ -26,15 +26,7 @@ namespace AdventOfCode.WinUI.Pages
         {
             if (e.ClickedItem is RiddleItem item)
             {
-                var dlg = new ContentDialog
-                {
-                    Title = item.Title,
-                    Content = item.Description,
-                    CloseButtonText = AppResources.GetLocalized("Close"),
-                    XamlRoot = XamlRoot,
-                };
-                await ViewModel.ExecuteDaySolutionAsync(ViewModel.SelectedYear, item.Day);
-                await dlg.ShowAsync();
+                await ViewModel.RiddleItemClickedCommand.ExecuteAsync(item);
             }
         }
 

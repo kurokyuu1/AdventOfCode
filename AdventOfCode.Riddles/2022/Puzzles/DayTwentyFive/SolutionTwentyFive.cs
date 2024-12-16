@@ -70,9 +70,9 @@ internal sealed class SolutionTwentyFive : SolutionBase
         return result.ToString();
     }
 
-    private static void SolutionOne(IEnumerable<string> input)
+    private void SolutionOne(IEnumerable<string> input)
     {
-        PuzzleOneResult(SnafuEncode(input.Sum(SnafuDecode)));
+        SetPuzzleOneResult(SnafuEncode(input.Sum(SnafuDecode)));
     }
 
     #endregion

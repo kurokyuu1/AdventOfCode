@@ -44,8 +44,8 @@ internal sealed class SolutionDayOne : SolutionBase
                     let last = RegExCollection.ExtractNumbersFromWordsReversed().Match(s)
                     select GetNumber(first.Value) * 10 + GetNumber(last.Value)
             ).Sum();
-        PuzzleOneResult($"Sum of all numbers is: {sum}");
-        PuzzleTwoResult($"Sum of all numbers is: {sum2}");
+        SetPuzzleOneResult($"Sum of all numbers is: {sum}");
+        SetPuzzleTwoResult($"Sum of all numbers is: {sum2}");
         return;
 
         static long GetNumber(string s) =>

@@ -2,5 +2,7 @@
 
 public interface IAdventModule
 {
-    public Task<(object Result1, object Result2)> RunAsync();
+    public Task RunAsync();
+    public IAdventResult? PuzzleResult1 { get; }
+    public IAdventResult? PuzzleResult2 { get; }
 }

@@ -27,8 +27,8 @@ internal sealed class SolutionDayOne : SolutionBase
             .SplitByDoubleNewLine()
             .Select(x => x.SplitByNewLine().Sum(int.Parse)).ToList();
 
-        PuzzleOneResult($"Max calories are: {maxCalories.Max()}");
-        PuzzleTwoResult($"Total calories of the top three is: {maxCalories.OrderByDescending(x => x).Take(3).Sum()}");
+        SetPuzzleOneResult($"Max calories are: {maxCalories.Max()}");
+        SetPuzzleTwoResult($"Total calories of the top three is: {maxCalories.OrderByDescending(x => x).Take(3).Sum()}");
     }
 
     #endregion

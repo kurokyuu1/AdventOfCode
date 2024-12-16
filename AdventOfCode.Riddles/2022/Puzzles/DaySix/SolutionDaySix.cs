@@ -29,8 +29,8 @@ internal sealed class SolutionDaySix : SolutionBase
     public override async Task RunAsync()
     {
         var input = await InternalReadAllTextAsync();
-        PuzzleOneResult(GetMarker(input, 4));
-        PuzzleTwoResult(GetMarker(input, 14));
+        SetPuzzleOneResult(GetMarker(input, 4));
+        SetPuzzleTwoResult(GetMarker(input, 14));
     }
 
     #endregion

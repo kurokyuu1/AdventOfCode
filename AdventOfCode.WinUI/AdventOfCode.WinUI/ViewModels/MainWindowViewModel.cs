@@ -9,7 +9,10 @@ using AdventOfCode.Riddles._2024.Models;
 using AdventOfCode.WinUI.Contracts;
 using AdventOfCode.WinUI.Contracts.Services;
 using AdventOfCode.WinUI.Models;
+using AdventOfCode.WinUI.Strings;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Controls;
 
 #endregion
 
@@ -54,6 +57,26 @@ public sealed partial class MainWindowViewModel : ObservableRecipient
         }
     }
 
+    [RelayCommand]
+    private async Task OnRiddleItemClickedAsync(RiddleItem item)
+    {
+        if (item.Module is { })
+        {
+            await item.Module.RunAsync();
+            item.Description =
+                $"[Puzzle 1]: {item.Module.PuzzleResult1}{Environment.NewLine}[Puzzle 2]: {item.Module.PuzzleResult2}";
+        }
+
+        var dlg = new ContentDialog
+        {
+            Title = item.Title,
+            Content = item.Description,
+            CloseButtonText = AppResources.GetLocalized("Close"),
+            XamlRoot = App.MainWindow.Content.XamlRoot,
+        };
+        await dlg.ShowAsync();
+    }
+
     public void BuildStaggeredLayoutForYear(int year)
     {
         Riddles.Clear();
@@ -69,7 +92,7 @@ public sealed partial class MainWindowViewModel : ObservableRecipient
             var height = Random.Shared.Next(200, 250);
             if (riddles.TryGetValue(day, out var module))
             {
-                var item = new RiddleItem()
+                var item = new RiddleItem
                 {
                     Color = Color.FromArgb(0xff, red, green, blue),
                     Year = year,
@@ -77,14 +100,14 @@ public sealed partial class MainWindowViewModel : ObservableRecipient
                     Height = height,
                     IsStarted = true,
                     Title = "Day " + day,
-                    Description = "Desc",
                     Index = Riddles.Count + 1,
+                    Module = module,
                 };
                 Riddles.Add(item);
             }
             else
             {
-                var item = new RiddleItem()
+                var item = new RiddleItem
                 {
                     Color = Color.FromArgb(0xff, 0xa9, 0xa9, 0xa9),
                     Year = year,
@@ -92,7 +115,7 @@ public sealed partial class MainWindowViewModel : ObservableRecipient
                     Height = height,
                     IsStarted = false,
                     Title = "Day " + day,
-                    Description = "Desc",
+                    Description = "Not yet solved",
                     Index = Riddles.Count + 1,
                 };
                 Riddles.Add(item);

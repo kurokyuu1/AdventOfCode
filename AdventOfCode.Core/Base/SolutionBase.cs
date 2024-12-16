@@ -1,4 +1,5 @@
-﻿using AdventOfCode.Core.Contracts;
+﻿using System.Diagnostics.CodeAnalysis;
+using AdventOfCode.Core.Contracts;
 using AdventOfCode.Core.Enumeration;
 using AdventOfCode.Core.RegularExpressions;
 
@@ -33,6 +34,8 @@ public abstract class SolutionBase : IAdventModule
     #region "Methods"
 
     public abstract Task RunAsync();
+    public IAdventResult? PuzzleResult1 { get; private set; }
+    public IAdventResult? PuzzleResult2 { get; private set; }
 
     protected void LogToConsole(string message)
     {
@@ -54,16 +57,17 @@ public abstract class SolutionBase : IAdventModule
     protected ReadOnlySpan<string> InternalReadAllLines(ReadingMode mode = ReadingMode.Input) =>
         ReadAllLines(mode == ReadingMode.Input ? _fileName : _testFilename);
 
-    protected static T PuzzleOneResult<T>(T msg)
+    protected void PuzzleOne(string message) => WriteLine($"[Puzzle 1] {message}");
+    protected void PuzzleTwo(string message) => WriteLine($"[Puzzle 2] {message}");
+
+    protected void SetPuzzleOneResult<TResult>(TResult result)
     {
-        WriteLine($"[Puzzle 1] {msg}");
-        return msg;
+        PuzzleResult1 = new AdventResult<TResult>(result);
     }
 
-    protected static T PuzzleTwoResult<T>(T msg)
+    protected void SetPuzzleTwoResult<TResult>(TResult result)
     {
-        WriteLine($"[Puzzle 2] {msg}");
-        return msg;
+        PuzzleResult2 = new AdventResult<TResult>(result);
     }
 
     protected static int ConvertToInt(string input) =>

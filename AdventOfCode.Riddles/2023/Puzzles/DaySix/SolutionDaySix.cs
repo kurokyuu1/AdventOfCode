@@ -26,8 +26,8 @@ internal sealed class SolutionDaySix : SolutionBase
 
     public override async Task RunAsync()
     {
-        PuzzleOneResult(await SolveAsync());
-        PuzzleTwoResult(await SolveAsync(true));
+        SetPuzzleOneResult(await SolveAsync());
+        SetPuzzleTwoResult(await SolveAsync(true));
     }
 
     private async Task<long> SolveAsync(bool isPartTwo = false)

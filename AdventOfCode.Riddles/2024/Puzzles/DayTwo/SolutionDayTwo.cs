@@ -111,11 +111,11 @@ public sealed class SolutionDayTwo : SolutionBase
 
         if (!isPart2)
         {
-            PuzzleOneResult(safeReports);
+            SetPuzzleOneResult(safeReports);
         }
         else
         {
-            PuzzleTwoResult(safeReports);
+            SetPuzzleTwoResult(safeReports);
         }
     }
 

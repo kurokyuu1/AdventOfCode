@@ -19,8 +19,8 @@ internal sealed class SolutionDayTwo : SolutionBase
         var parsedList = Solver.ParseHandsList(data);
         var riggedList = Solver.ParseOutcomeList(data);
 
-        PuzzleOneResult(parsedList.Sum(Solver.CalculateEndScore));
-        PuzzleTwoResult(riggedList.Sum(Solver.CalculateRiggedEndScore));
+        SetPuzzleOneResult(parsedList.Sum(Solver.CalculateEndScore));
+        SetPuzzleTwoResult(riggedList.Sum(Solver.CalculateRiggedEndScore));
     }
 
     #endregion

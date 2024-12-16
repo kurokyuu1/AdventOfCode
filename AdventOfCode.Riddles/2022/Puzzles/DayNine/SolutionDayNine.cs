@@ -33,7 +33,7 @@ internal sealed class SolutionDayNine : SolutionBase
     public override async Task RunAsync()
     {
         await SimulateAsync();
-        PuzzleOneResult($"Tail visited {_visited.Count} positions!");
+        SetPuzzleOneResult($"Tail visited {_visited.Count} positions!");
     }
 
     private async Task SimulateAsync()

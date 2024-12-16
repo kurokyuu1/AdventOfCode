@@ -48,7 +48,7 @@
                   IsItemClickEnabled="True"
                   ItemClick="AdventOfCodeDays_OnItemClick"
                   ItemTemplate="{StaticResource AdventCalendarItem}" 
-                  ItemsSource="{x:Bind ViewModel.Riddles, Mode=OneWay}"/>
+                  ItemsSource="{x:Bind ViewModel.Riddles, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBox x:Name="txtAdventOfCodeOutput"
                  Grid.Column="1"

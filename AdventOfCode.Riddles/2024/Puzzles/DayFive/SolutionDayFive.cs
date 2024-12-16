@@ -84,7 +84,7 @@ public sealed class SolutionDayFive : SolutionBase
 
     }
 
-    public override async Task<(object? Result1, object? Result2)> RunAsync()
+    public override async Task RunAsync()
     {
         var input = await InternalReadAllTextAsync(ReadingMode.TestInput);
         var split = input.SplitByDoubleNewLine();
@@ -95,9 +95,7 @@ public sealed class SolutionDayFive : SolutionBase
         var sumOfMiddleValues = pages.Sum(x => x.GetMiddleValue());
         //var unordered = pages.Sum(x => x.GetMiddleValueAndFixOrder()); // does not work...
 
-        PuzzleOneResult(sumOfMiddleValues);
+        SetPuzzleOneResult(sumOfMiddleValues);
         //PuzzleTwoResult(unordered);
-
-        return (sumOfMiddleValues, null);
     }
 }

@@ -193,7 +193,7 @@ internal sealed class SolutionDayEleven : SolutionBase
             WriteLine($"{item.Name} inspected items {item.Inspections} times.");
         }
 
-        PuzzleOneResult(ComputeMonkeyBusiness(result));
+        SetPuzzleOneResult(ComputeMonkeyBusiness(result));
     }
 
     private void SolvePartTwo(List<Monkey?> list)
@@ -205,7 +205,7 @@ internal sealed class SolutionDayEleven : SolutionBase
             WriteLine($"{item.Name} inspected items {item.Inspections} times.");
         }
 
-        PuzzleTwoResult(ComputeMonkeyBusiness(result2));
+        SetPuzzleTwoResult(ComputeMonkeyBusiness(result2));
     }
 
     #endregion

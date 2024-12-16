@@ -33,17 +33,17 @@ internal sealed class SolutionDayThirteen : SolutionBase
         SolvePuzzleTwo(input);
     }
 
-    private static void SolvePuzzleOne(string input)
+    private void SolvePuzzleOne(string input)
     {
         var sum = input
             .SplitByDoubleNewLine()
             .Select(x => x.SplitByNewLine())
             .Select((x, i) => new ComparePair(x, i))
             .Where(item => item.Compare() <= 0).Sum(item => item.Index + 1);
-        PuzzleOneResult(sum);
+        SetPuzzleOneResult(sum);
     }
 
-    private static void SolvePuzzleTwo(string input)
+    private void SolvePuzzleTwo(string input)
     {
         input += "\r\n\r\n[[2]]\r\n[[6]]";
         var packages = input.Split(Separator, StringSplitOptions.RemoveEmptyEntries).Select(x => new CompareToken(x))
@@ -54,7 +54,7 @@ internal sealed class SolutionDayThirteen : SolutionBase
         packages.Sort();
 
         var result = (packages.IndexOf(lastPackages[0]) + 1) * (packages.IndexOf(lastPackages[1]) + 1);
-        PuzzleTwoResult(result);
+        SetPuzzleTwoResult(result);
     }
 
     #endregion

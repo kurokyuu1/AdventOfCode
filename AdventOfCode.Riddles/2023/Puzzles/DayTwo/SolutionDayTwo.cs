@@ -76,8 +76,8 @@ internal sealed partial class SolutionDayTwo : SolutionBase
             return;
         }
 
-        PuzzleOneResult($"Possible games by summing up game ids is: {CalculateGamesPossible(data, 12, 14, 13)}");
-        PuzzleTwoResult($"Sum of Game-Set Power: {CalculatePower(data)}");
+        SetPuzzleOneResult($"Possible games by summing up game ids is: {CalculateGamesPossible(data, 12, 14, 13)}");
+        SetPuzzleTwoResult($"Sum of Game-Set Power: {CalculatePower(data)}");
     }
 
     #endregion

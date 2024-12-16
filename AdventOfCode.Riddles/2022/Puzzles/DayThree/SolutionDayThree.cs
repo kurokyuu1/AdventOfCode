@@ -44,8 +44,8 @@ internal sealed class SolutionDayThree : SolutionBase
         var prioritySum = input.Sum(GetPriority);
         var chunks = input.Chunk(3).Select(GetChunkedPriority).Sum();
 
-        PuzzleOneResult($"Sum is: {prioritySum}");
-        PuzzleTwoResult($"Sum of Badge is: {chunks}");
+        SetPuzzleOneResult($"Sum is: {prioritySum}");
+        SetPuzzleTwoResult($"Sum of Badge is: {chunks}");
     }
 
     #endregion

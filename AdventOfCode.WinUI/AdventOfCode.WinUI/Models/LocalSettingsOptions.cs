@@ -1,4 +1,5 @@
 ﻿using Windows.UI;
+using AdventOfCode.Core.Contracts;
 
 namespace AdventOfCode.WinUI.Models;
 
@@ -23,5 +24,5 @@ public sealed class RiddleItem
     public required bool IsStarted { get; set; }
     public bool IsNotStarted => !IsStarted;
     public required Color Color { get; set; }
-    public Task Action { get; set; } = Task.CompletedTask;
+    public IAdventModule? Module { get; set; }
 }
